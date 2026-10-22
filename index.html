@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' blob: data:; style-src 'self'; script-src 'self'; connect-src 'self'">
+<meta name="robots" content="noindex">
+<title>CT Viewer</title>
+<link rel="stylesheet" href="viewer.css">
+</head>
+<body>
+<div id="app">
+  <aside id="sidebar">
+    <div class="patient-info">
+      <div id="patient-name">CT Viewer</div>
+      <div id="study-meta"></div>
+    </div>
+    <div id="series-list"></div>
+    <div class="sidebar-footer">
+      <button id="open-btn" type="button">Deschide alt folder…</button>
+      <a id="manifest-link" href="manifest.json" target="_blank" rel="noopener" hidden>manifest.json</a>
+    </div>
+  </aside>
+
+  <main id="viewport">
+    <div id="topbar">
+      <button id="sidebar-toggle" title="Toggle series list">☰</button>
+      <div id="series-label">Selectează o serie</div>
+      <div id="slice-counter"></div>
+      <div id="adjust-controls">
+        <label>B <input type="range" id="brightness" min="50" max="200" value="100"></label>
+        <label>C <input type="range" id="contrast" min="50" max="200" value="100"></label>
+        <button id="invert-btn" title="Invert (negativ)">Inv</button>
+        <button id="reset-btn" title="Reset ajustări">Reset</button>
+      </div>
+    </div>
+
+    <div id="image-stage">
+      <img id="slice-img" draggable="false" alt="">
+      <button id="prev-btn" class="nav-btn" title="Slice anterior (←)">‹</button>
+      <button id="next-btn" class="nav-btn" title="Slice următor (→)">›</button>
+      <div id="hint">Rotiță mouse / săgeți stânga-dreapta pentru a naviga secțiunile</div>
+
+      <div id="dropzone" hidden>
+        <div class="dz-box">
+          <h1>CT Viewer</h1>
+          <p>Trage aici folderul exportului CT (cu subfolderele pe serii) sau alege-l manual.</p>
+          <button id="pick-btn" type="button">Alege folder…</button>
+          <p class="dz-note">🔒 Imaginile rămân pe calculatorul tău — se citesc direct în browser, nu se încarcă nicăieri.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="scrub-bar">
+      <input type="range" id="slice-slider" min="0" max="0" value="0">
+    </div>
+
+    <div id="path-readout"></div>
+  </main>
+</div>
+<input type="file" id="folder-input" webkitdirectory directory multiple hidden>
+<script src="viewer.js"></script>
+</body>
+</html>

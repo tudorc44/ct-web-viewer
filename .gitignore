@@ -1,0 +1,6 @@
+# Never commit patient data
+*.jpg
+*.jpeg
+*.png
+*.dcm
+manifest.json
